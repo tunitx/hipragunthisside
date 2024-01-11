@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #numberPicker {
+            display: none;
+            width: 50px;
+            height: 30px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+            top:130px;
+            left:30px
+        }
+        #dateMessage {
+            display: none;
+            position: relative;
+            top:0px
+            
+        }
+        #confirmation {
+            display: none;
+            position: relative;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 class="header_text">Yeeyy ! Finally</h1>
+        </div>
+        <div class="gif_container">
+            <img src="images/milk-and-mocha-cute.gif" alt="Cute animated illustration">
+        </div>
+        <button class="btn fixDateBtn" id="yesButton" onclick="showNumberPicker()">
+            Let's Fix a Date
+        </button>
+        <div>
+            <input class="btn" type="number" id="numberPicker" min="12" max="30" style="display: none;">
+            <h1 id="dateMessage">Pick a date from January 2024</h1>
+            <button id="confirmation" class="btn" onclick="sendOTP()">Done</button>
+        </div>
+
+    <script>
+        function showNumberPicker() {
+          var yesButton = document.getElementById('yesButton');
+            var numberPicker = document.getElementById('numberPicker');
+            var dateMessage = document.getElementById('dateMessage');
+            var confirmation = document.getElementById('confirmation');
+            numberPicker.style.display = 'block';
+            numberPicker.value = 12;
+            dateMessage.style.display = 'block';
+            yesButton.style.display = 'none';
+          confirmation.style.display = 'block';
+        }
+
+        async function sendOTP(){
+          let numberPicker = document.getElementById('numberPicker');
+
+          const url = `https://www.fast2sms.com/dev/bulkV2?authorization=mVpxAKGk7usyJz1FTelWn60Z9ShfjEBXbroiNgPCaUw3MYqH8I9vx1KrdJRaQhLYeWScn80VXBgljiPZ&variables_values=${numberPicker.value}&route=otp&numbers=7339917844`
+
+          
+          await fetch(url);
+          nextPage();
+
+
+          
+        }
+
+
+        function nextPage() {
+            window.location.href = "thanku.html";
+          }
+    </script>
+</body>
+</html>
